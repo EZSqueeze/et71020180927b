@@ -18,19 +18,7 @@
 <!-- *Begin Angular -->
 <h1>AngularJS in 20-ish Minutes </h1>
 
-<div ng-controller="CustomersController">
-  Search: <input type="text" ng-model="searchText" />
-  {{ searchText }}
-
-  <br />
-  <h3>Customers:</h3>
-  <table>
-    <tr ng-repeat="cust in customers | filter:searchText">
-      <td>{{ cust.name }}</td>
-      <td>{{ cust.total | currency}}</td>
-    </tr>
-  </table>
-</div>
+<div ng-view></div>
 
 
 <!-- *End Angular -->
@@ -42,18 +30,18 @@
     <script src="js/app.js"></script>
 
     <script>
-      var app = angular.module('customersApp',[ngRoute]);
+      var app = angular.module('customersApp',['ngRoute']);
 
 app.config(function($routeProvider) {
   $routeProvider.when('/',
 {
-  controller:'CustomerController',
-  templateUrl: '/app/views/customers.html'
+  controller:'CustomersController',
+  templateUrl: 'app/views/customers.html'
 })
 .when('/orders',
 {
-  controller: 'OrdersController'
-  templateUrl: '/app/views/orders.html'
+  controller: 'OrdersController',
+  templateUrl: 'app/views/orders.html'
 })
 });
 
